@@ -1,0 +1,14 @@
+name: Test it
+
+test-job-1:
+  if : 1==2
+  steps:
+    - name: 'Sample -1 '
+      run : echo "Hi"
+
+test-job-2:
+  needs:
+    - test-job-1
+  steps:
+    - name: 'Sample -1 '
+      run : echo "Hi"      
