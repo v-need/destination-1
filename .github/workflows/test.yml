@@ -15,8 +15,8 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            const repo = `source-1`
-            const owner = `vineeth-asml`
+            const repo = "source-1"
+            const owner = "vineeth-asml"
 
             #GET repo 
             const repoInfo = await github.rest.repos.get({
