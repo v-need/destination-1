@@ -53,7 +53,7 @@ jobs:
               repo,
             });
             
-            console.log(`Repository ${owner}/${repo} is not found. Delete before proceeding`)
+            console.log(`Repository ${owner}/${repo} exists already. Delete before proceeding`)
             
             await github.rest.repos.delete({
                 owner,
