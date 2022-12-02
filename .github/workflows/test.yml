@@ -18,15 +18,15 @@ jobs:
             const repo = "source-1"
             const owner = "vineeth-asml"
 
-            #GET repo 
+            // GET repo 
             const repoInfo = await github.rest.repos.get({
               owner,
               repo,
             });
             
             
-            //console.log(`repoInfo ${repoInfo}`)
-            //console.log(`repoInfo.Id ${repoInfo.Id}`)
+            console.log(`repoInfo ${repoInfo}`)
+            console.log(`repoInfo.Id ${repoInfo.Id}`)
             // Delete repo
             //if( repoInfo.Id ) {
             //  await github.rest.repos.delete({
