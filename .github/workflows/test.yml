@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: 'Sample -1 '
         run : echo "Hi"
-      - name: Delete the forked repository if exists
+      - name: Check if repository exists
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
@@ -27,11 +27,41 @@ jobs:
             
             console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
             console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
-            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data.Id)}]`)
+            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data[0].Id)}]`)
+            
+            
             // Delete repo
             //if( repoInfo.Id ) {
             //  await github.rest.repos.delete({
             //    owner,
             //    repo,
             //  });
-            // }           
+            // }       
+            
+      - name: Check if repository exists
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
+          script: |
+            const repo = "source-112"
+            const owner = "vineeth-asml"
+
+            // GET repo 
+            const repoInfo = await github.rest.repos.get({
+              owner,
+              repo,
+            });
+            
+            console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
+            console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
+            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data[0].Id)}]`)
+            
+            
+            // Delete repo
+            //if( repoInfo.Id ) {
+            //  await github.rest.repos.delete({
+            //    owner,
+            //    repo,
+            //  });
+            // }
+                        
