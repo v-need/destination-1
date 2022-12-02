@@ -27,7 +27,6 @@ jobs:
             
             console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
             console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
-            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data[0].Id)}]`)
             
             
             // Delete repo
@@ -54,7 +53,6 @@ jobs:
             
             console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
             console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
-            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data[0].Id)}]`)
             
             
             // Delete repo
