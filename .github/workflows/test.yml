@@ -16,10 +16,10 @@ jobs:
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
-          
-            try { 
             const repo = "source-1"
             const owner = "vineeth-asml"
+            
+            try { 
 
             // GET repo 
             const repoInfo = await github.rest.repos.get({
@@ -42,11 +42,9 @@ jobs:
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
-          
-            try { 
-            const repo = "source-133"
+            const repo = "source-1"
             const owner = "vineeth-asml"
-
+            try { 
             // GET repo 
             const repoInfo = await github.rest.repos.get({
               owner,
