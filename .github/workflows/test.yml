@@ -27,7 +27,7 @@ jobs:
               repo,
             });
             
-            console.log(`Repository ${owner}/'${repo} is not found. Delete before proceeding`)
+            console.log(`Repository ${owner}/${repo} is not found. Delete before proceeding`)
             
             await github.rest.repos.delete({
                 owner,
@@ -35,7 +35,7 @@ jobs:
             });
             
             } catch {
-              console.log(`Repository ${owner}/'${repo} is not found`)
+              console.log(`Repository ${owner}/${repo} is not found`)
             }
       - name: Check if repository exists
         uses: actions/github-script@v5
@@ -53,7 +53,7 @@ jobs:
               repo,
             });
             
-            console.log(`Repository ${owner}/'${repo} is not found. Delete before proceeding`)
+            console.log(`Repository ${owner}/${repo} is not found. Delete before proceeding`)
             
             await github.rest.repos.delete({
                 owner,
@@ -61,5 +61,5 @@ jobs:
             });
             
             } catch {
-              console.log(`Repository ${owner}/'${repo} is not found`)
+              console.log(`Repository ${owner}/${repo} is not found`)
             }            
