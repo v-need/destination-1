@@ -18,7 +18,7 @@ jobs:
           script: |
             const repo = "source-1"
             const owner = "vineeth-asml"
-            
+            let repoExist = false
             try { 
 
             // GET repo 
@@ -27,30 +27,7 @@ jobs:
               repo,
             });
             
-            console.log(`Repository ${owner}/${repo} is not found. Delete before proceeding`)
-            
-            await github.rest.repos.delete({
-                owner,
-                repo,
-            });
-            
-            } catch {
-              console.log(`Repository ${owner}/${repo} is not found`)
-            }
-      - name: Check if repository exists
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
-          script: |
-            const repo = "source-1"
-            const owner = "vineeth-asml"
-            try { 
-            // GET repo 
-            const repoInfo = await github.rest.repos.get({
-              owner,
-              repo,
-            });
-            
+            repoExist = true
             console.log(`Repository ${owner}/${repo} exists already. Delete before proceeding`)
             
             await github.rest.repos.delete({
@@ -59,5 +36,39 @@ jobs:
             });
             
             } catch {
-              console.log(`Repository ${owner}/${repo} is not found`)
-            }            
+              if(!repoExist) {
+                console.log(`Repository ${owner}/${repo} is not found`)
+              } else {
+                console.log(`Deletion of Repository ${owner}/${repo} failed`)
+              }
+            }
+      - name: Check if repository exists
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
+          script: |
+            const repo = "source-1"
+            const owner = "vineeth-asml"
+            let repoExist = false
+            try { 
+            // GET repo 
+            const repoInfo = await github.rest.repos.get({
+              owner,
+              repo,
+            });
+            
+            repoExist = true
+            console.log(`Repository ${owner}/${repo} exists already. Delete before proceeding`)
+            
+            await github.rest.repos.delete({
+                owner,
+                repo,
+            });
+            
+            } catch {
+              if(!repoExist) {
+                console.log(`Repository ${owner}/${repo} is not found`)
+              } else {
+                console.log(`Deletion of Repository ${owner}/${repo} failed`)
+              }
+            }         
