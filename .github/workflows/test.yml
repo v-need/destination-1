@@ -34,7 +34,7 @@ jobs:
                 owner,
                 repo,
             });
-            
+            console.log(`Successfully Deleted of Repository ${owner}/${repo}`)
             } catch {
               if(!repoExist) {
                 console.log(`Repository ${owner}/${repo} is not found`)
