@@ -16,6 +16,8 @@ jobs:
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
+          
+            try { 
             const repo = "source-1"
             const owner = "vineeth-asml"
 
@@ -25,24 +27,24 @@ jobs:
               repo,
             });
             
-            console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
-            console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
+            console.log(`Repository ${owner}/'${repo} is not found. Delete before proceeding`)
             
+            await github.rest.repos.delete({
+                owner,
+                repo,
+            });
             
-            // Delete repo
-            //if( repoInfo.Id ) {
-            //  await github.rest.repos.delete({
-            //    owner,
-            //    repo,
-            //  });
-            // }       
-            
+            } catch {
+              console.log(`Repository ${owner}/'${repo} is not found`)
+            }
       - name: Check if repository exists
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
-            const repo = "source-112"
+          
+            try { 
+            const repo = "source-133"
             const owner = "vineeth-asml"
 
             // GET repo 
@@ -51,15 +53,13 @@ jobs:
               repo,
             });
             
-            console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
-            console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
+            console.log(`Repository ${owner}/'${repo} is not found. Delete before proceeding`)
             
+            await github.rest.repos.delete({
+                owner,
+                repo,
+            });
             
-            // Delete repo
-            //if( repoInfo.Id ) {
-            //  await github.rest.repos.delete({
-            //    owner,
-            //    repo,
-            //  });
-            // }
-                        
+            } catch {
+              console.log(`Repository ${owner}/'${repo} is not found`)
+            }            
