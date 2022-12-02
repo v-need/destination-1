@@ -47,7 +47,7 @@ jobs:
         with:
           github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
-            const repo = "source-1"
+            const repo = "source-122"
             const owner = "vineeth-asml"
             let repoExist = false
             try { 
