@@ -25,9 +25,9 @@ jobs:
               repo,
             });
             
-            
-            console.log(`repoInfo ${repoInfo.data}`)
-            console.log(`repoInfo.Id ${repoInfo.data.Id}`)
+            console.log(`repoInfo [${JSON.stringify(repoInfo)}]`);   
+            console.log(`repoInfo  [${JSON.stringify(repoInfo.data)}]`)
+            console.log(`repoInfo.Id  [${JSON.stringify(repoInfo.data.Id)}]`)
             // Delete repo
             //if( repoInfo.Id ) {
             //  await github.rest.repos.delete({
