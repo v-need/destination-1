@@ -12,10 +12,9 @@ jobs:
       - name: 'Sample -1 '
         run : echo "Hi"
       - name: Delete the forked repository if exists
-        env:
-          GITHUB_TOKEN: ${{ secrets.VINEETH_PAT_TOKEN }}
         uses: actions/github-script@v5
         with:
+          github-token: ${{ secrets.VINEETH_PAT_TOKEN }}
           script: |
             const repo = "source-1"
             const owner = "vineeth-asml"
