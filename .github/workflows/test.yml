@@ -6,7 +6,7 @@ on:
     branches:
       - branch-1
 env:
-  RUN_URL : ${{ github.GITHUB_SERVER_URL}}/${{ github.GITHUB_REPOSITORY}}/actions/runs/${{github.GITHUB_RUN_ID }}
+  RUN_URL : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
   GIT_COMMIT_ID: ${{ github.GITHUB_SHA }}
 jobs:
   test-job-1:
