@@ -5,12 +5,17 @@ on:
   push:
     branches:
       - branch-1
+env:
+  RUN_URL : ${{ env.GITHUB_SERVER_URL/env.GITHUB_REPOSITORY/actions/runs/env.GITHUB_RUN_ID }}
+  GIT_COMMIT_ID: ${{ env.GITHUB_SHA }}
 jobs:
   test-job-1:
     runs-on: ubuntu-latest
     steps:
       - name: 'Sample -1 '
-        run : echo "Hi"
+        run : |
+          echo "Hi URL is $RUN_URL"
+          echo "Hi GITHUB_SHA is $GIT_COMMIT_ID"
       - name: Check if repository exists
         uses: actions/github-script@v5
         with:
