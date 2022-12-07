@@ -20,11 +20,13 @@ jobs:
     steps:    
     - uses: actions/github-script@v5
       id: get-file-list
+      env:
+        FILE_SIZE_TO_SEARCH: ${{ inputs.FILE_SIZE_TO_SEARCH }}
       name: Search for the file
       with:
         script: |
           const org = 'actions'
-          const q = `size:>${{ context.inputs.FILE_SIZE_TO_SEARCH }}+org:${org}`
+          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
           
           core.info(`q:$q}`)
 
