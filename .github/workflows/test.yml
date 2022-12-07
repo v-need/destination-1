@@ -38,17 +38,20 @@ jobs:
             {data: 'URL', header: true}
           ]
 
+          summaryBody = `| File | Path | Repository | URL \n|---	|---	|---	|---	|---	|\n`
           for (const item of searchResult.data.items) {
-            resultsRows.push([
-              `${item.name}`,
-              ` ${item.path}`,
-              `${item.repository.full_name}`,
-              `${item.url}`
-            ])
+            const fileName = `${item.name}`
+            const filePath = `${item.path}`
+            const repository = `${item.repository.full_name}`,
+            const url = `${item.url}`
+            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url}`
+            
           }
+          
+          core.info('Markdown : ${summaryBody}')
 
           await core.summary
             .addHeading(':eyes: Search Results :eyes:')
-            .addTable([resultsHeader, ...resultsRows])
+            .addRaw(summaryBody)
             .write()
           
