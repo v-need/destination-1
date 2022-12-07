@@ -33,11 +33,11 @@ jobs:
             filePath = `${item.path}`
             repository = `${item.repository.full_name}`,
             url = `${item.url}`
-            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url}`
+            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url} |\n`
             
           }
           
-          core.info('Markdown : ${summaryBody}')
+          core.info(`Markdown : ${summaryBody}`)
 
           await core.summary
             .addHeading(':eyes: Search Results :eyes:')
