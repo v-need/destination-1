@@ -18,6 +18,13 @@ jobs:
   get-large-files:
     runs-on: ubuntu-latest
     steps:    
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo -e "\033[31;1;4mDump GitHub context\033[0m"
+        echo -e "$GITHUB_CONTEXT\n"
+      shell: bash    
     - uses: actions/github-script@v5
       id: get-file-list
       env:
