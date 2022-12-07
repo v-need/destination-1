@@ -39,9 +39,8 @@ jobs:
             summaryBody += `${fileName},${filePath},${repository},${url}\n`
             
           }
-          
-          //core.info(`Markdown : ${summaryBody}`)          
-          core.setOutput('fileList', ${fileList} )
+               
+          core.setOutput('fileList', String(${fileList}) )
           
     - name: Save File          
       run: |
