@@ -20,7 +20,7 @@ jobs:
       with:
         script: |
           const org = 'actions'
-          const {MAX_FILE_SIZE} = process.env
+          const MAX_FILE_SIZE = process.env.MAX_FILE_SIZE
           const q = `size:>${MAX_FILE_SIZE}+org:${org}`
 
           const searchResult = await github.rest.search.code({
