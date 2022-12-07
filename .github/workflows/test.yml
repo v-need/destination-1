@@ -23,13 +23,10 @@ jobs:
     - uses: actions/github-script@v5
       id: get-file-list
       name: Search for the file
-      env:
-        MAX_FILE_SIZE: ${{ inputs.FILE_SIZE_TO_SEARCH }}
       with:
         script: |
           const org = 'actions'
-          const {MAX_FILE_SIZE} = process.env
-          const q = `size:>${MAX_FILE_SIZE}+org:${org}`
+          const q = `size:>${{ inputs.FILE_SIZE_TO_SEARCH }}+org:${org}`
 
           const searchResult = await github.rest.search.code({
             q,
