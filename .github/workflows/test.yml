@@ -33,7 +33,7 @@ jobs:
             filePath = `${item.path}`
             repository = `${item.repository.full_name}`,
             url = `${item.url}`
-            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url} | <br/>`
+            summaryBody += `| ${fileName} | ${filePath} | ${repository} | ${url} | <br/>`
             
           }
           
