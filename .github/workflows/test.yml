@@ -1,7 +1,7 @@
 on:
-  push: 
-    branches: 
-      - branch-1
+#  push: 
+#    branches: 
+#      - branch-1
 
   workflow_dispatch:
    inputs:
@@ -9,8 +9,6 @@ on:
         description: 'File Size limit to search in Bytes. Workflow lists all files with size greater than provided value'
         default: "150"
         required: false
-
-  workflow_call:
 
 
 name: Get files with larger size    
