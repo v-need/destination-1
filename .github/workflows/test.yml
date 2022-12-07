@@ -27,7 +27,7 @@ jobs:
             q,
           });
           
-          const resultsRows: string[][] = [[]]
+          let resultsRows;
 
           const resultsHeader = [
             {data: 'File', header: true},
