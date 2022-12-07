@@ -20,34 +20,12 @@ jobs:
       with:
         script: |
           const org = 'actions'
-          const MAX_FILE_SIZE = process.env.MAX_FILE_SIZE
+          const {MAX_FILE_SIZE} = process.env
           const q = `size:>${MAX_FILE_SIZE}+org:${org}`
 
           const searchResult = await github.rest.search.code({
             q,
           });
 
-          const resultsRows: string[][] = [[]]
-
-          const resultsHeader = [
-            {data: 'File', header: true},
-            {data: 'Path', header: true},
-            {data: 'Repository', header: true},
-            {data: 'URL', header: true}
-          ]
-
-          for (const item of searchResult.items) {
-            resultsRows.push([
-              `${item.name}`,
-              ` ${item.path}`,
-              `${item.repository.full_name}`,
-              `${item.url}`
-            ])
-          }
-
-          await core.summary
-            .addHeading(':eyes: Search Results :eyes:')
-            .addTable([resultsHeader, ...resultsRows])
-            .write()
 
           
