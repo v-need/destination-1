@@ -39,8 +39,9 @@ jobs:
             fileList += `${fileName},${filePath},${repository},${url}\n`
             
           }
-               
-          core.setOutput('fileList', String(${fileList}) )
+         
+          core.info(`$fileList`)
+          //core.setOutput('fileList', String(${fileList}) )
           
     - name: Save File          
       run: |
