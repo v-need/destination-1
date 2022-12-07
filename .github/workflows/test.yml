@@ -27,13 +27,13 @@ jobs:
             q,
           });
 
-          let summaryBody = `| File | Path | Repository | URL \n|---	|---	|---	|---	|---	|\n`
+          let summaryBody = `| File | Path | Repository | URL | <br/>|---	|---	|---	|---	|---	|<br/>`
           for (const item of searchResult.data.items) {
             fileName = `${item.name}`
             filePath = `${item.path}`
             repository = `${item.repository.full_name}`,
             url = `${item.url}`
-            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url} |\n`
+            summaryBody += `|${fileName} | ${filePath} | ${repository} | ${url} | <br/>`
             
           }
           
