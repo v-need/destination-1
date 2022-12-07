@@ -38,7 +38,7 @@ jobs:
             {data: 'URL', header: true}
           ]
 
-          for (const item of searchResult.items) {
+          for (const item of searchResult.data.items) {
             resultsRows.push([
               `${item.name}`,
               ` ${item.path}`,
