@@ -27,7 +27,7 @@ jobs:
         script: |
           const org = 'actions'
           const {FILE_SIZE_TO_SEARCH} = process.env
-          const fromIn = `${{ github.event.inputs.FILE_SIZE_TO_SEARCH }}`
+          const fromIn = ${{ github.event.inputs.FILE_SIZE_TO_SEARCH }}
           const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
           core.info(`FILE_SIZE_TO_SEARCH:${FILE_SIZE_TO_SEARCH}`)
           core.info(`fromIn:${fromIn}`)
