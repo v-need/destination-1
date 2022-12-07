@@ -16,26 +16,14 @@ jobs:
   get-large-files:
     runs-on: ubuntu-latest
     steps:    
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: |
-        echo -e "\033[31;1;4mDump GitHub context\033[0m"
-        echo -e "$GITHUB_CONTEXT\n"
-      shell: bash    
     - uses: actions/github-script@v5
       id: get-file-list
-      env:
-        FILE_SIZE_TO_SEARCH: "${{ github.event.inputs.FILE_SIZE_TO_SEARCH }}"
       name: Search for the file
       with:
         script: |
           const org = 'actions'
-          const {FILE_SIZE_TO_SEARCH} = process.env
-          const fromIn = context.payload.inputs.FILE_SIZE_TO_SEARCH
+          const FILE_SIZE_TO_SEARCH = context.payload.inputs.FILE_SIZE_TO_SEARCH
           const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
-          core.info(`FILE_SIZE_TO_SEARCH:${FILE_SIZE_TO_SEARCH}`)
-          core.info(`fromIn:${fromIn}`)
 
           core.info(`q:${q}`)
 
