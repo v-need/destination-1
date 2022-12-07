@@ -11,12 +11,12 @@ env:
 name: Get files with larger size    
 jobs:
   get-large-files:
-    env:
-      MAX_FILE_SIZE: ${{ env.FILE_SIZE_TO_SEARCH }}
     runs-on: k8s
     steps:    
     - uses: actions/github-script@v5
       name: Search for the file
+      env:
+        MAX_FILE_SIZE: ${{ env.FILE_SIZE_TO_SEARCH }}
       with:
         script: |
           const org = 'actions'
