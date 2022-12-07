@@ -40,8 +40,8 @@ jobs:
             
           }
          
-          core.info(`$fileList`)
-          //core.setOutput('fileList', String(${fileList}) )
+          core.info(`${fileList}`)
+          core.setOutput("fileList", fileList);
           
     - name: Save File          
       run: |
