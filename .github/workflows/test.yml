@@ -28,18 +28,20 @@ jobs:
             q,
           });
 
-          let fileList = `File,Path,Repository,URL/n`
+          let fileList = `File,Path,Repository,URL\n`
+          
           for (const item of searchResult.data.items) {
             fileName = `${item.name}`
             filePath = `${item.path}`
             repository = `${item.repository.full_name}`,
             url = `${item.url}`
+            
             summaryBody += `${fileName},${filePath},${repository},${url}\n`
             
           }
           
           //core.info(`Markdown : ${summaryBody}`)          
-          core.setOutput('fileList', ${fileList})
+          core.setOutput('fileList', ${fileList} )
           
     - name: Save File          
       run: |
