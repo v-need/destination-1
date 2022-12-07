@@ -24,7 +24,7 @@ jobs:
       with:
         script: |
           const org = 'actions'
-          const q = `size:>${{ inputs.FILE_SIZE_TO_SEARCH }}+org:${org}`
+          const q = `size:>${{ context.inputs.FILE_SIZE_TO_SEARCH }}+org:${org}`
           
           core.info(`q:$q}`)
 
