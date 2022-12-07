@@ -12,8 +12,6 @@ on:
         required: false
         type: number
 
-env:
-  FILE_SIZE_TO_SEARCH: 15000 #in Bytes 
 
 name: Get files with larger size    
 jobs:
@@ -27,6 +25,8 @@ jobs:
         script: |
           const org = 'actions'
           const q = `size:>${{ inputs.FILE_SIZE_TO_SEARCH }}+org:${org}`
+          
+          core.info(`q:$q}`)
 
           const searchResult = await github.rest.search.code({
             q,
