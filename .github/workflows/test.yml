@@ -28,7 +28,8 @@ jobs:
           const org = 'actions'
           const {FILE_SIZE_TO_SEARCH} = process.env
           const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
-          
+          core.info(`FILE_SIZE_TO_SEARCH:${FILE_SIZE_TO_SEARCH}`)
+
           core.info(`q:${q}`)
 
           const searchResult = await github.rest.search.code({
