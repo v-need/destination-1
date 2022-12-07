@@ -11,7 +11,7 @@ env:
 name: Get files with larger size    
 jobs:
   get-large-files:
-    runs-on: k8s
+    runs-on: ubuntu-latest
     steps:    
     - uses: actions/github-script@v5
       name: Search for the file
