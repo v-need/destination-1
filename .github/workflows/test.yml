@@ -4,13 +4,13 @@ on:
       - branch-1
 
   workflow_dispatch:
-  workflow_call:
-    inputs:
+   inputs:
       FILE_SIZE_TO_SEARCH:
         description: 'File Size limit to search in Bytes. Workflow lists all files with size greater than provided value'
-        default: 150
+        default: "150"
         required: false
-        type: number
+
+  workflow_call:
 
 
 name: Get files with larger size    
