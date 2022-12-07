@@ -27,6 +27,8 @@ jobs:
             q,
           });
           
+          const responseString = JSON.stringify(searchResult)
+          core.info(`searchOutput :  ${responseString}`)
           let resultsRows;
 
           const resultsHeader = [
