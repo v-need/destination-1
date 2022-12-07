@@ -4,6 +4,13 @@ on:
       - branch-1
 
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      FILE_SIZE_TO_SEARCH:
+        description: 'File Size limit to search in Bytes. Workflow lists all files with size greater than provided value'
+        default: 15000
+        required: false
+        type: number
 
 env:
   FILE_SIZE_TO_SEARCH: 15000 #in Bytes 
@@ -17,7 +24,7 @@ jobs:
       id: get-file-list
       name: Search for the file
       env:
-        MAX_FILE_SIZE: ${{ env.FILE_SIZE_TO_SEARCH }}
+        MAX_FILE_SIZE: ${{ inputs.FILE_SIZE_TO_SEARCH }}
       with:
         script: |
           const org = 'actions'
