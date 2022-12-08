@@ -32,8 +32,8 @@ jobs:
           });
 
           let fileList = `File,Path,Repository,URL\n`
-          let IssueBody = `| File  | Path    | Repository    | File  |` + "\n"
-          IssueBody += `| :---:   | :---: | :---: | :---:   |` + "\n"
+          let IssueBody = `| File  | Path    | Repository    | File  |\n`
+          IssueBody += `| :---:   | :---: | :---: | :---:   |\n`
           
           for (const item of searchResult.data.items) {
             fileName = `${item.name}`
@@ -42,7 +42,7 @@ jobs:
             url = `${item.url}`
             
             fileList += `${fileName},${filePath},${repository},${url}\n`
-            IssueBody += `| ${fileName} | ${filePath} | ${repository} | ${url}|` + "\n"
+            IssueBody += `| ${fileName} | ${filePath} | ${repository} | ${url}|\n`
             
           }
          
