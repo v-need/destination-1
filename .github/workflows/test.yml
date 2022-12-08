@@ -10,6 +10,8 @@ on:
         default: "150"
         required: false
 
+env:
+  RUN_URL : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
 
 name: Get files with larger size    
 jobs:
@@ -22,6 +24,8 @@ jobs:
       run: echo "$GITHUB_CONTEXT"    
     - uses: actions/github-script@v5
       id: get-file-list
+      env:
+        RUN_URL: ${{ env.RUN_URL }}      
       name: Search for the file
       with:
         script: |
@@ -56,8 +60,8 @@ jobs:
           const repo = context.repo.repo
           const GITHUB_SERVER_URL = context.env.GITHUB_SERVER_URL
           const GITHUB_RUN_ID = context.env.GITHUB_RUN_ID
-          const runURL = `${GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${GITHUB_RUN_ID}`
-          const runInfo = `Find List of repos in attched artifact in ${runURL}`
+          const {RUN_URL} = process.env
+          const runInfo = `Find List of repos in attched artifact in ${RUN_URL}`
           
           const body = `${IssueBody} \n ${runInfo}`
           const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH}`
