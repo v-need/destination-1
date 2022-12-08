@@ -32,8 +32,8 @@ jobs:
           });
 
           let fileList = `File,Path,Repository,URL\n`
-          let IssueBody = `| File | Path | Repository | URL |<br/>`
-          IssueBody += `|---	|---	|---	|--- |<br/>`
+          let IssueBody = `| File  | Path    | Repository    | File  |` + "\n"
+          IssueBody += `| :---:   | :---: | :---: | :---:   |` + "\n"
           
           for (const item of searchResult.data.items) {
             fileName = `${item.name}`
@@ -42,7 +42,7 @@ jobs:
             url = `${item.url}`
             
             fileList += `${fileName},${filePath},${repository},${url}\n`
-            IssueBody += `| ${fileName} | ${filePath} | ${repository} | ${url}|<br/>`
+            IssueBody += `| ${fileName} | ${filePath} | ${repository} | ${url}|` + "\n"
             
           }
          
@@ -50,9 +50,9 @@ jobs:
           
           const owner = context.repo.owner
           const repo = context.repo.repo
-          const runInfo = "Find List of repos in attched artifact : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          const runInfo = `Find List of repos in attched artifact : ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}`
           const body = `${IssueBody} <br/> ${runInfo}`
-          const title = `[ INFO ] List of LFS Files larger than context.payload.inputs.FILE_SIZE_TO_SEARCH`
+          const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH}`
           
           await github.rest.issues.create({
             owner,
