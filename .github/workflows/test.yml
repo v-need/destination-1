@@ -21,9 +21,9 @@ jobs:
       name: Search for the file
       with:
         script: |
-          const org = 'actions'
+          const owner = 'actions'
           const FILE_SIZE_TO_SEARCH = context.payload.inputs.FILE_SIZE_TO_SEARCH
-          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
+          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${owner}`
 
           core.info(`q:${q}`)
 
