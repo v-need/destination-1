@@ -21,9 +21,9 @@ jobs:
       name: Search for the file
       with:
         script: |
-          const owner = 'actions'
+          const org = 'actions'
           const FILE_SIZE_TO_SEARCH = context.payload.inputs.FILE_SIZE_TO_SEARCH
-          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${owner}`
+          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
 
           core.info(`q:${q}`)
 
@@ -47,7 +47,8 @@ jobs:
           }
          
           core.setOutput("fileList", fileList);
-
+          
+          const owner = context.repo.owner
           const repo = context.repo.repo
           const runInfo = "Find List of repos in attched artifact : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           const body = `${IssueBody} <br/> ${runInfo}`
