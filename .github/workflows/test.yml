@@ -30,9 +30,11 @@ jobs:
 
           core.info(`q:${q}`)
 
-          const searchResult = await github.rest.search.code({
+          const searchResult = await github.paginate( github.rest.search.code, {
             q,
           });
+          
+          core.info(searchResult)
 
           let fileList = `File,Path,Repository,URL\n`
           let IssueBody = `| File  | Path    | Repository    | File  |\n`
