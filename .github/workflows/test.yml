@@ -50,7 +50,12 @@ jobs:
           
           const owner = context.repo.owner
           const repo = context.repo.repo
-          const body = `${IssueBody}`
+          GITHUB_SERVER_URL = context.env.GITHUB_SERVER_URL
+          GITHUB_RUN_ID = context.env.GITHUB_RUN_ID
+          runURL = `${GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${GITHUB_RUN_ID}`
+          const runInfo = `Find List of repos in attched artifact in ${runURL}`
+          
+          const body = `${IssueBody} \n ${runInfo}`
           const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH}`
           
           await github.rest.issues.create({
