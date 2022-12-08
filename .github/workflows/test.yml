@@ -58,8 +58,7 @@ jobs:
           
           const owner = context.repo.owner
           const repo = context.repo.repo
-          const GITHUB_SERVER_URL = context.env.GITHUB_SERVER_URL
-          const GITHUB_RUN_ID = context.env.GITHUB_RUN_ID
+
           const {RUN_URL} = process.env
           const runInfo = `Find List of repos in attched artifact in ${RUN_URL}`
           
