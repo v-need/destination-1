@@ -50,9 +50,9 @@ jobs:
           
           const owner = context.repo.owner
           const repo = context.repo.repo
-          GITHUB_SERVER_URL = context.env.GITHUB_SERVER_URL
-          GITHUB_RUN_ID = context.env.GITHUB_RUN_ID
-          runURL = `${GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${GITHUB_RUN_ID}`
+          const GITHUB_SERVER_URL = context.env.GITHUB_SERVER_URL
+          const GITHUB_RUN_ID = context.env.GITHUB_RUN_ID
+          const runURL = `${GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${GITHUB_RUN_ID}`
           const runInfo = `Find List of repos in attched artifact in ${runURL}`
           
           const body = `${IssueBody} \n ${runInfo}`
