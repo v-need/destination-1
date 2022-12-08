@@ -10,9 +10,6 @@ on:
         default: "150"
         required: false
 
-env:
-  RUN_URL : $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-
 name: Get files with larger size    
 jobs:
   get-large-files:
@@ -23,9 +20,7 @@ jobs:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"    
     - uses: actions/github-script@v5
-      id: get-file-list
-      env:
-        RUN_URL: ${{ env.RUN_URL }}      
+      id: get-file-list   
       name: Search for the file
       with:
         script: |
@@ -59,11 +54,11 @@ jobs:
           const owner = context.repo.owner
           const repo = context.repo.repo
 
-          const {RUN_URL} = process.env
+          const RUN_URL = process.env.GITHUB_SERVER_URL+ `/${context.repo.owner}/${context.repo.repo}/actions/runs/` + process.env.GITHUB_RUN_ID
           const runInfo = `Find List of repos in attched artifact in ${RUN_URL}`
           
           const body = `${IssueBody} \n ${runInfo}`
-          const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH}`
+          const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH} Bytes`
           
           await github.rest.issues.create({
             owner,
