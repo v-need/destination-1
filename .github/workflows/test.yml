@@ -31,9 +31,9 @@ jobs:
           const q = `size:>${sizeInBytes}+org:${org}`
           core.info(`q:${q}`)
 
-          const searchResult = await github.rest.search.code{
+          const searchResult = await github.rest.search.code({
             q,
-          };
+          });
           
           core.info(searchResult)
 
