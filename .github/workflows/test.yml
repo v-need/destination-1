@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
    inputs:
       FILE_SIZE_TO_SEARCH:
-        description: 'File Size limit to search in Bytes. Workflow lists all files with size greater than provided value'
+        description: 'File Size limit to search in MB. Workflow lists all files with size greater than provided value'
         default: "150"
         required: false
 
@@ -24,16 +24,16 @@ jobs:
       name: Search for the file
       with:
         script: |
-          const org = 'actions'
+          const org = 'actions'          
           const FILE_SIZE_TO_SEARCH = context.payload.inputs.FILE_SIZE_TO_SEARCH
-          const q = `size:>${FILE_SIZE_TO_SEARCH}+org:${org}`
-          
-          const sizeInMb = parseInt(Number(FILE_SIZE_TO_SEARCH) / Math.pow(10,9))
+          const sizeInBytes = parseInt(Number(FILE_SIZE_TO_SEARCH)*1000)
           core.info(`sizeInMb:${sizeInMb}`)
+          const q = `size:>${sizeInBytes}+org:${org}`
+          core.info(`q:${q}`)
 
-          const searchResult = await github.paginate( github.rest.search.code, {
+          const searchResult = await github.rest.search.code{
             q,
-          });
+          };
           
           core.info(searchResult)
 
