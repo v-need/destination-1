@@ -21,7 +21,7 @@ jobs:
           echo $today
           echo $date
           echo $name
-          if[ ${today}==${date} ];then
+          if[ "${today}"=="${date}" ];then
             echo "$name is the spoc for this week"
           fi
         done < spoc.csv
