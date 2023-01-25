@@ -18,7 +18,7 @@ jobs:
         while IFS=, read -r date name
         do
           today=$(date +%F)
-          if[ ${today}== ${date}] then
-            echo "$name is the spoc for this weel"
+          if[ ${today}== ${date}];then
+            echo "$name is the spoc for this week"
           fi
         done < spoc.csv
