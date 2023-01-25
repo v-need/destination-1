@@ -1,79 +1,24 @@
 on:
-#  push: 
+  push: 
 #    branches: 
 #      - branch-1
 
-  workflow_dispatch:
-   inputs:
-      FILE_SIZE_TO_SEARCH:
-        description: 'File Size limit to search in MB. Workflow lists all files with size greater than provided value'
-        default: "150"
-        required: false
 
-name: Get files with larger size    
+name: Send notification 
 jobs:
-  get-large-files:
-    runs-on: ubuntu-latest
-    steps:    
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJSON(github) }}
-      run: echo "$GITHUB_CONTEXT"    
-    - uses: actions/github-script@v5
-      id: get-file-list   
-      name: Search for the file
-      with:
-        script: |
-          const org = 'actions'          
-          const FILE_SIZE_TO_SEARCH = context.payload.inputs.FILE_SIZE_TO_SEARCH
-          const sizeInBytes = parseInt(Number(FILE_SIZE_TO_SEARCH)*Math.pow(10,6))
-          core.info(`sizeInBytes:${sizeInBytes}`)
-          const q = `size:>${sizeInBytes}+org:${org}`
-          core.info(`q:${q}`)
-
-          const searchResult = await github.rest.search.code({
-            q,
-          });
-          
-          core.info(searchResult)
-
-          let fileList = `File,Path,Repository,URL\n`
-          let IssueBody = `| File  | Path    | Repository    | File  |\n`
-          IssueBody += `| :---:   | :---: | :---: | :---:   |\n`
-          
-          for (const item of searchResult.data.items) {
-            fileName = `${item.name}`
-            filePath = `${item.path}`
-            repository = `${item.repository.full_name}`,
-            url = `${item.url}`
-            
-            fileList += `${fileName},${filePath},${repository},${url}\n`
-            IssueBody += `| ${fileName} | ${filePath} | ${repository} | ${url}|\n`
-            
-          }
-         
-          core.setOutput("fileList", fileList);
-          
-          const owner = context.repo.owner
-          const repo = context.repo.repo
-
-          const RUN_URL = process.env.GITHUB_SERVER_URL+ `/${context.repo.owner}/${context.repo.repo}/actions/runs/` + process.env.GITHUB_RUN_ID
-          const runInfo = `Find List of repos in attched artifact in ${RUN_URL}`
-          
-          const body = `${IssueBody} \n ${runInfo}`
-          const title = `[INFO] List of LFS Files larger than ${FILE_SIZE_TO_SEARCH} Bytes`
-          
-          await github.rest.issues.create({
-            owner,
-            repo,
-            title,
-            body
-          });
-          
-    - name: Save File          
+  send-notification:
+    runs-on: rise
+    steps:
+    - name: Checkout the repo 
+      uses: actions/checkout@v3
+    - name: Get Name of the SPOC
+      id: get_spoc_name
       run: |
-        echo "${{ steps.get-file-list.outputs.fileList }}" >> large_file_list.csv
-    - uses: actions/upload-artifact@v3
-      with:
-        name: large_file_list
-        path: large_file_list.csv
+        pushd config
+        while IFS=, read -r date name
+        do
+          today=$(date +%F)
+          if[ ${today}== ${date}] then
+            echo "$name is the spoc for this weel"
+          fi
+        done < spoc.csv
